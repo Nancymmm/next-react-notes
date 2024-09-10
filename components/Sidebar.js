@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
-import { getAllNotes } from '@/lib/redis';
+import NoteListSkeleton from '@/components/NoteListSkeleton';
 import SidebarNoteList from '@/components/SidebarNoteList';
+import EditButton from '@/components/EditButton';
 export default async function Sidebar() {
-  const notes = await getAllNotes();
+  //   const notes = await getAllNotes();
+  // 移除数据请求部分，为SidebarNoteList添加Suspense以及fallback UI NoteListSkeleton
   return (
     <>
       <section className="col sidebar">
@@ -21,10 +23,12 @@ export default async function Sidebar() {
           </section>
         </Link>
         <section className="sidebar-menu" role="menubar">
-          {/*SideSearchField */}
+          <EditButton noteId={null}>New</EditButton>
         </section>
         <nav>
-          <SidebarNoteList notes={notes} />
+          <Suspense fallback={<NoteListSkeleton />}>
+            <SidebarNoteList />
+          </Suspense>
         </nav>
       </section>
     </>
