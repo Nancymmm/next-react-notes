@@ -14,3 +14,6 @@
 # 尽可能将客户端组件在组件树中下移,避免依赖库被打包到客户端 bundle 中
 
 # 使用 Suspense，数据加载不会阻塞页面，在笔记列表还在加载的时候，用户依然可以与页面其他部分进行交互，比如点击 New 按钮新建笔记。（即不用 suspense 就会卡顿，像无响应，用 suspense 可以出现其他加载的）
+
+![image](https://github.com/user-attachments/assets/b429b2e3-5d51-492c-a8a7-3449e7a89e77)
+要对 content 类型做判断，否则报错
