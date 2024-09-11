@@ -28,3 +28,7 @@
 ### Next.js 客户端路由缓存功能，客户端会缓存 RSC Payload 数据,路由缓存存放在浏览器的临时缓存中，有两个因素决定了路由缓存的持续时间：Session，缓存在导航期间会持续存在，当页面刷新的时候会被清除; 自动失效期：单个路由段会在特定时长后自动失效，如果路由是静态渲染，持续 5 分钟，如果是动态渲染，持续 30s.
 
 ### 小问题：以这个项目为例，如果点击笔记的时间算成 0s，因为请求时长大于 5s，假设 RSC Payload 在第 5s 完全返回，下次路由缓存失效重新获取的时间是大概在 30s 后还是 35s 后呢？答案是 30s。以 RSC Payload 的返回时间为准，RSC Payload 是逐行返回的，所以点击的时候很快就有返回了。(以返回时间为主，不是完全返回时间)
+
+### 进行数据处理的时候，一定要记得重新验证数据，也就是 [revalidatePath] 和 [revalidateTag]
+
+### React 的 [useFormState] 和 [useFormStatus] 非常适合搭配 Server Actions 使用。`useFormState` 用于根据 form action 的结果更新表单状态，`useFormStatus` 用于在提交表单时显示待处理状态。
