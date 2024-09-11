@@ -1,12 +1,11 @@
 import React, { Suspense } from 'react';
 import Link from 'next/link';
 import SidebarSearchField from '@/components/SidebarSearchField';
-import NoteListSkeleton from '@/components/NoteListSkeleton';
 import SidebarNoteList from '@/components/SidebarNoteList';
 import EditButton from '@/components/EditButton';
+import NoteListSkeleton from '@/components/NoteListSkeleton';
+
 export default async function Sidebar() {
-  //   const notes = await getAllNotes();
-  // 移除数据请求部分，为SidebarNoteList添加Suspense以及fallback UI NoteListSkeleton
   return (
     <>
       <section className="col sidebar">

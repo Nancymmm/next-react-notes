@@ -1,4 +1,4 @@
-import SidebarNoteList from '@/components/SidebarNoteList';
+import SidebarNoteListFilter from '@/components/SidebarNoteListFilter';
 import { getAllNotes } from '@/lib/redis';
 import { sleep } from '@/lib/utils';
 import SidebarNoteItemHeader from '@/components/SidebarNoteItemHeader';
@@ -12,7 +12,7 @@ export default async function NoteList() {
   }
 
   return (
-    <SidebarNoteList
+    <SidebarNoteListFilter
       notes={Object.entries(notes).map(([noteId, note]) => {
         const noteData = JSON.parse(note);
         return {

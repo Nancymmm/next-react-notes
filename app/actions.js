@@ -4,12 +4,13 @@ import { redirect } from 'next/navigation';
 import { addNote, updateNote, delNote } from '@/lib/redis';
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
-import { sleep } from '@/lib/utils';
 
 const schema = z.object({
   title: z.string(),
   content: z.string().min(1, '请填写内容').max(100, '字数最多 100'),
 });
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export async function saveNote(prevState, formData) {
   // 获取 noteId
@@ -35,12 +36,14 @@ export async function saveNote(prevState, formData) {
   if (noteId) {
     await updateNote(noteId, JSON.stringify(data));
     revalidatePath('/', 'layout');
+    redirect(`/note/${noteId}`);
   } else {
-    await addNote(JSON.stringify(data));
+    const res = await addNote(JSON.stringify(data));
     revalidatePath('/', 'layout');
+    redirect(`/note/${res}`);
   }
 
-  return { message: `Add Success!` };
+  // return { message: `Add Success!` }
 }
 
 export async function deleteNote(prevState, formData) {
