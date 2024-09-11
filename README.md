@@ -32,3 +32,7 @@
 ### 进行数据处理的时候，一定要记得重新验证数据，也就是 [revalidatePath] 和 [revalidateTag]
 
 ### React 的 [useFormState] 和 [useFormStatus] 非常适合搭配 Server Actions 使用。`useFormState` 用于根据 form action 的结果更新表单状态，`useFormStatus` 用于在提交表单时显示待处理状态。
+
+### 因为文字改为了 “新建”，导致样式发生了变化，这其实就是本地化中常遇到的问题。一种解决方案是设计通用的样式，保持不同的文字样式一致。一种是根据不同的语言单独定义样式，比如我们可以为 button 添加一个 `edit-button-${lng}` 类名，然后设置单独的样式。又或者我们干脆改为使用更为通用的图标来实现，比如语雀的添加按钮就是一个 `+` 号：
+
+### 客户端组件不支持 `async`
