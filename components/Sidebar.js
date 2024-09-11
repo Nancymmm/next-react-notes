@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import Link from 'next/link';
+import SidebarSearchField from '@/components/SidebarSearchField';
 import NoteListSkeleton from '@/components/NoteListSkeleton';
 import SidebarNoteList from '@/components/SidebarNoteList';
 import EditButton from '@/components/EditButton';
@@ -23,6 +24,7 @@ export default async function Sidebar() {
           </section>
         </Link>
         <section className="sidebar-menu" role="menubar">
+          <SidebarSearchField />
           <EditButton noteId={null}>New</EditButton>
         </section>
         <nav>
